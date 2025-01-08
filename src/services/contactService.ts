@@ -1,7 +1,8 @@
 import { ContactType, ContactTypeID } from "../interfaces/ContactType";
 import { v4 as uuidv4 } from "uuid";
+import { contact } from "../data/contact";
 
-let contacts: ContactTypeID[] = [];
+let contacts: ContactTypeID[] = contact;
 
 export const fetchAllContacts = () => {
     return contacts;

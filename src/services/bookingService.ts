@@ -1,7 +1,8 @@
 import { BookingType, BookingTypeID } from "../interfaces/BookingType";
 import { v4 as uuidv4 } from 'uuid'
+import { booking } from "../data/booking";
 
-let bookings: BookingTypeID[] = [];
+let bookings: BookingTypeID[] = booking;
 
 export const fetchAllBookings = () => {
     return bookings;
