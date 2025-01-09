@@ -1,10 +1,10 @@
 import { v4 } from "uuid"
-import Logo from "../assets/room_img.jpg";
+import { RoomTypeID } from "../interfaces/RoomType";
 
-export const room = [
+export const room: RoomTypeID[] = [
     {
         "id": v4(),
-        "photo": Logo,
+        "photo": "../assets/room_img.jpg",
         "room_number": "Suite 65",
         "price": 174,
         "bed_type": "Double Superior",
@@ -14,7 +14,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": Logo,
+        "photo": "../assets/room_img.jpg",
         "room_number": "PO Box 90067",
         "price": 384,
         "bed_type": "Suite",
@@ -24,7 +24,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": Logo,
+        "photo": "../assets/room_img.jpg",
         "room_number": "Room 532",
         "price": 851,
         "bed_type": "Double Superior",
@@ -34,7 +34,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": Logo,
+        "photo": "../assets/room_img.jpg",
         "room_number": "Room 757",
         "price": 807,
         "bed_type": "Suite",
@@ -44,7 +44,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": Logo,
+        "photo": "../assets/room_img.jpg",
         "room_number": "Room 521",
         "price": 252,
         "bed_type": "Suite",
@@ -54,7 +54,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": Logo,
+        "photo": "../assets/room_img.jpg",
         "room_number": "PO Box 47666",
         "price": 826,
         "bed_type": "Suite",
@@ -64,7 +64,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": Logo,
+        "photo": "../assets/room_img.jpg",
         "room_number": "Apt 1579",
         "price": 235,
         "bed_type": "Double Bed",
@@ -74,7 +74,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": Logo,
+        "photo": "../assets/room_img.jpg",
         "room_number": "PO Box 20698",
         "price": 510,
         "bed_type": "Double Superior",
@@ -84,7 +84,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": Logo,
+        "photo": "../assets/room_img.jpg",
         "room_number": "Suite 49",
         "price": 739,
         "bed_type": "Double Superior",
@@ -94,7 +94,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": Logo,
+        "photo": "../assets/room_img.jpg",
         "room_number": "Room 1816",
         "price": 862,
         "bed_type": "Double Superior",
@@ -104,7 +104,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": Logo,
+        "photo": "../assets/room_img.jpg",
         "room_number": "Room 1250",
         "price": 382,
         "bed_type": "Single Bed",
@@ -114,7 +114,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": Logo,
+        "photo": "../assets/room_img.jpg",
         "room_number": "PO Box 18255",
         "price": 640,
         "bed_type": "Double Bed",
@@ -124,7 +124,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": Logo,
+        "photo": "../assets/room_img.jpg",
         "room_number": "Room 989",
         "price": 735,
         "bed_type": "Double Superior",
@@ -134,7 +134,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": Logo,
+        "photo": "../assets/room_img.jpg",
         "room_number": "5th Floor",
         "price": 839,
         "bed_type": "Double Bed",
@@ -144,7 +144,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": Logo,
+        "photo": "../assets/room_img.jpg",
         "room_number": "Suite 99",
         "price": 256,
         "bed_type": "Single Bed",
