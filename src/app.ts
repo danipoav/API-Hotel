@@ -8,12 +8,17 @@ dotenv.config();
 
 const app = express();
 const port = 3000;
+
 app.use(express.json());
 
-app.get('/', publicRouter)
+//Rutas Publicas.
+app.use('/api', publicRouter)
 
+//Ruta Autentificación para generar un token.
 app.use('/api/auth', authRoutes);
-app.use('/api', protectedRoutes);
+
+//Rutas Privadas, tener necesariamente un token valido.
+app.use('/api/protected', protectedRoutes);
 
 app.listen(port, () => {
     console.log(`http://localhost:${port}`)

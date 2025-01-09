@@ -1,11 +1,13 @@
 import { Router } from "express";
 import { authenticateToken } from "../middleware/authMiddleware";
-import { Request, Response } from "express";
+import bookingRoutes from './bookingsRoutes'
+import contactRoutes from './contactsRoutes'
 
 const router = Router();
 
-router.get('/protected', authenticateToken, (req: Request, res: Response) => {
-    res.status(200).json({ message: 'Allowed acces to protected route' });
-});
+router.use(authenticateToken);
+
+router.use('/bookings', bookingRoutes);
+router.use('/contacts', contactRoutes);
 
 export default router;
