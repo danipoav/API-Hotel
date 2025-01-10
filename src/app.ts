@@ -3,11 +3,11 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes'
 import protectedRoutes from './routes/protectedRoutes'
 import publicRouter from "./routes/publicRoutes";
+import serverless from 'serverless-http';
 
 dotenv.config();
 
 const app = express();
-const port = 3000;
 
 app.use(express.json());
 
@@ -20,6 +20,9 @@ app.use('/api/auth', authRoutes);
 //Rutas Privadas, tener necesariamente un token valido.
 app.use('/api/protected', protectedRoutes);
 
-app.listen(port, () => {
-    console.log(`http://localhost:${port}`)
+//Ruta raíz para dar la Bienvenida.
+app.use('/', (req: Request, res: Response) => {
+    res.json({ message: `Bienvenido a al API de Danipoav's Hotel` })
 })
+
+export const handler = serverless(app);
