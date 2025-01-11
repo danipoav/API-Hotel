@@ -1,17 +1,18 @@
-# "org" ensures this Service is used with the correct Serverless Framework Access Key.
 org: danipoav
-# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
 app: api
-# "service" is the name of this project. This will also be added to your AWS resource names.
 service: api
 
 provider:
   name: aws
   runtime: nodejs20.x
   region: eu-west-3
+  stage: dev
+  environment:
+    NODE_ENV: ${opt:stage, 'dev'}  
 
 functions:
   api:
-    handler: app.handler
+    handler: app.handler  
     events:
-      - httpApi: "*"
+      - httpApi: "*"  
+
