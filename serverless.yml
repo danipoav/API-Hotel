@@ -4,15 +4,13 @@ service: api
 
 provider:
   name: aws
-  runtime: nodejs20.x
+  runtime: nodejs22.x
   region: eu-west-3
   stage: dev
-  environment:
-    NODE_ENV: ${opt:stage, 'dev'}  
 
 functions:
   api:
-    handler: app.handler  
+    handler: src/app.handler  
     events:
-      - httpApi: "*"  
+      - httpApi: "*"
 

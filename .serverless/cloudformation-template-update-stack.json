@@ -91,18 +91,13 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-west-3-afc997d0-57db",
-          "S3Key": "serverless/api/dev/1736529154580-2025-01-10T17:12:34.580Z/api.zip"
+          "S3Key": "serverless/api/dev/1736731261604-2025-01-13T01:21:01.604Z/api.zip"
         },
         "Handler": "app.handler",
         "Runtime": "nodejs20.x",
         "FunctionName": "api-dev-api",
         "MemorySize": 1024,
         "Timeout": 6,
-        "Environment": {
-          "Variables": {
-            "NODE_ENV": "dev"
-          }
-        },
         "Role": {
           "Fn::GetAtt": [
             "IamRoleLambdaExecution",
@@ -114,14 +109,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersionLJVBn7FKAwrv6otTYLgG95Jl5mVi1WtDpTcYeyNT0": {
+    "ApiLambdaVersionVLiSxDm2BDfEAzrS0XaMgXdObP3Ya1I8669hJGe8U": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "d3qhyhgYTS/uyhLJ6qej8IICx4Ghs1My7Ry5WOji5oo="
+        "CodeSha256": "d+tmy484Tpr+hQiqjPLI3Z0mu1FaHodT9jd/mTcQuV8="
       }
     },
     "HttpApi": {
@@ -230,7 +225,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionLJVBn7FKAwrv6otTYLgG95Jl5mVi1WtDpTcYeyNT0"
+        "Ref": "ApiLambdaVersionVLiSxDm2BDfEAzrS0XaMgXdObP3Ya1I8669hJGe8U"
       },
       "Export": {
         "Name": "sls-api-dev-ApiLambdaFunctionQualifiedArn"

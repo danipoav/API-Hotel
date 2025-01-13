@@ -3,7 +3,8 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes'
 import protectedRoutes from './routes/protectedRoutes'
 import publicRouter from "./routes/publicRoutes";
-import serverless from 'serverless-http';
+
+const serverless = require('serverless-http')
 
 dotenv.config();
 
