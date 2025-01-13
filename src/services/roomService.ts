@@ -1,31 +1,25 @@
 import { RoomTypeID, RoomType } from "../interfaces/RoomType";
+import Room from "../models/roomModel";
 import { v4 as uuidv4 } from "uuid";
-import { room } from "../data/room";
 
-let rooms: RoomTypeID[] = room;
-
-export const fetchAllRooms = () => {
-    return rooms;
+export const fetchAllRooms = async () => {
+    return await Room.find();
 }
 
-export const fetchRoomById = (id: string) => {
-    return rooms.find((room) => room.id === id);
+export const fetchRoomById = async (id: string) => {
+    return await Room.findById(id);
 }
 
-export const addRoom = (newRoom: RoomType) => {
-    const updatedRoom = { ...newRoom, id: uuidv4() };
-    rooms.push(updatedRoom);
-    return rooms;
+export const addRoom = async (data: RoomType) => {
+    const room = { ...data, id: uuidv4() };
+    const newRoom = new Room(room);
+    return await newRoom.save();
 }
 
-export const editRoom = (id: string, updatedRoom: RoomTypeID) => {
-    rooms = rooms.map((room) =>
-        room.id === id ? { ...room, ...updatedRoom } : room
-    );
-    return rooms;
+export const editRoom = async (id: string, data: RoomTypeID) => {
+    return await Room.findByIdAndUpdate(id, data, { new: true })
 }
 
-export const removeRoom = (id: string) => {
-    rooms = rooms.filter((room) => room.id !== id);
-    return rooms;
+export const removeRoom = async (id: string) => {
+    return await Room.findByIdAndDelete(id);
 }

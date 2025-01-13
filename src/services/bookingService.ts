@@ -1,31 +1,25 @@
 import { BookingType, BookingTypeID } from "../interfaces/BookingType";
+import Booking from "../models/bookingModel";
 import { v4 as uuidv4 } from 'uuid'
-import { booking } from "../data/booking";
 
-let bookings: BookingTypeID[] = booking;
-
-export const fetchAllBookings = () => {
-    return bookings;
+export const fetchAllBookings = async () => {
+    return await Booking.find();
 };
 
-export const fetchBookingById = (id: string) => {
-    return bookings.find((booking) => booking.id === id);
+export const fetchBookingById = async (id: string) => {
+    return await Booking.findById(id);
 };
 
-export const addBooking = (newBooking: BookingType) => {
-    const updatedBooking = { ...newBooking, id: uuidv4() };
-    bookings.push(updatedBooking);
-    return bookings;
+export const addBooking = async (data: BookingType) => {
+    const booking = { ...data, id: uuidv4() };
+    const newBooking = new Booking(booking);
+    return await newBooking.save();
 };
 
-export const editBooking = (id: string, updatedBooking: BookingTypeID) => {
-    bookings = bookings.map((booking) =>
-        booking.id === id ? { ...booking, ...updatedBooking } : booking
-    );
-    return bookings;
+export const editBooking = async (id: string, data: BookingTypeID) => {
+    return await Booking.findByIdAndUpdate(id, data, { new: true });
 };
 
-export const removeBooking = (id: string) => {
-    bookings = bookings.filter((booking) => booking.id !== id);
-    return bookings;
+export const removeBooking = async (id: string) => {
+    return await Booking.findByIdAndDelete(id);
 };

@@ -1,31 +1,25 @@
 import { ContactType, ContactTypeID } from "../interfaces/ContactType";
+import Contact from "../models/contactModel";
 import { v4 as uuidv4 } from "uuid";
-import { contact } from "../data/contact";
 
-let contacts: ContactTypeID[] = contact;
-
-export const fetchAllContacts = () => {
-    return contacts;
+export const fetchAllContacts = async () => {
+    return await Contact.find();
 }
 
-export const fetchContactById = (id: string) => {
-    return contacts.find((contact) => contact.id === id);
+export const fetchContactById = async (id: string) => {
+    return await Contact.findById(id);
 }
 
-export const addContact = (newContact: ContactType) => {
-    const updatedContact = { ...newContact, id: uuidv4() };
-    contacts.push(updatedContact);
-    return contacts;
+export const addContact = async (data: ContactType) => {
+    const contact = { ...data, id: uuidv4() };
+    const newContact = new Contact(contact);
+    return await newContact.save();
 }
 
-export const editContact = (id: string, updatedContact: ContactTypeID) => {
-    contacts = contacts.map((contact) =>
-        contact.id === updatedContact.id ? { ...contact, ...updatedContact } : contact
-    );
-    return contacts;
+export const editContact = async (id: string, data: ContactTypeID) => {
+    return await Contact.findByIdAndUpdate(id, data, { new: true });
 }
 
-export const removeContact = (id: string) => {
-    contacts = contacts.filter((contact) => contact.id !== id);
-    return contacts;
+export const removeContact = async (id: string) => {
+    return await Contact.findByIdAndDelete(id);
 }
