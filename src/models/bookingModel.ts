@@ -23,7 +23,7 @@ const bookingSchema = new Schema<IBooking>({
     requests: { type: String, required: true },
     booking_date: { type: String, required: true },
     price: { type: Number, required: false },
-    status: { type: String, required: true },
+    status: { type: String, required: true, enum: ['Paid', 'Refunded', 'Pending'] },
 });
 
 const BookingModel = mongoose.model<IBooking>('Booking', bookingSchema);
