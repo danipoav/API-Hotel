@@ -1,25 +1,35 @@
 import jwt from "jsonwebtoken";
 import dotenv from 'dotenv';
 import { Request, Response } from "express";
+import Auth from "../models/authModel";
+import bcrypt from 'bcrypt';
 
 dotenv.config();
 
 const secretKey = process.env.SECRET_KEY as string;
 
-const hardCodedUser = {
-    username: 'dani',
-    password: 'user'
-}
+export const login = async (req: Request, res: Response) => {
 
-export const login = (req: Request, res: Response) => {
     const { username, password } = req.body;
 
-    if (username === hardCodedUser.username && password === hardCodedUser.password) {
-        const token = jwt.sign({ username: hardCodedUser.username }, secretKey, { expiresIn: '1h' });
+    try {
+        const user = await Auth.findOne({ username })
+        if (!user) {
+            res.status(401).json({ message: 'Invalid Username' });
+            return;
+        }
+
+        const passwordIsValid = await bcrypt.compare(password, user.password);
+        if (!passwordIsValid) {
+            res.status(401).json({ message: 'Invalid Password' });
+            return;
+        }
+
+        const token = jwt.sign({ username: user.username }, secretKey, { expiresIn: '1h' });
         res.json({ token });
         return;
-    }
 
-    res.status(401).json({ message: 'Invalid credentials.' })
-    return;
+    } catch (error) {
+        res.status(500).json({ message: 'Error loggin in: ', error });
+    }
 }
