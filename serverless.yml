@@ -10,7 +10,11 @@ provider:
 
 functions:
   api:
-    handler: src/app.handler  
+    handler: src/app.handler
     events:
       - httpApi: "*"
-
+      
+package:
+  exclude:
+    - node_modules/@mapbox/node-pre-gyp/lib/util/nw-pre-gyp/index.html
+    - node_modules/@mapbox/node-pre-gyp/lib/util/*.html

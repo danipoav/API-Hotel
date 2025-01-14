@@ -6,8 +6,10 @@ import Booking from "./models/bookingModel";
 import Contact from "./models/contactModel";
 import User from "./models/userModel";
 import Room from "./models/roomModel";
+import { authSchema } from "./models/authModel";
+import { getAllBookings } from "./controllers/bookingController";
 
-const url = "mongodb://localhost:27017/api"
+const url = "mongodb+srv://Danipoav:Batman2002@dashboardapi.betsv.mongodb.net/api"
 
 const connectDB = async (): Promise<void> => {
     try {

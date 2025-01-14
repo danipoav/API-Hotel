@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import dotenv from 'dotenv';
 import { Request, Response } from "express";
 import Auth from "../models/authModel";
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 dotenv.config();
 
@@ -13,7 +13,8 @@ export const login = async (req: Request, res: Response) => {
     const { username, password } = req.body;
 
     try {
-        const user = await Auth.findOne({ username })
+        const user = await Auth.findOne({ username: username })
+
         if (!user) {
             res.status(401).json({ message: 'Invalid Username' });
             return;

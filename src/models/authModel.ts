@@ -5,7 +5,7 @@ export interface IAuth extends Document {
     password: string
 }
 
-const authSchema = new Schema<IAuth>({
+export const authSchema = new Schema<IAuth>({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true }
 });
