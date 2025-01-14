@@ -1,14 +1,16 @@
 import mongoose from "mongoose";
 import bcrypt from 'bcrypt';
 import Auth from "./models/authModel";
-import { bookingSeed } from "./seed/seed";
+import { bookingSeed, contactSeed, roomSeed, userSeed } from "./seed/seed";
 import Booking from "./models/bookingModel";
+import Contact from "./models/contactModel";
+import User from "./models/userModel";
+import Room from "./models/roomModel";
 
 const url = "mongodb://localhost:27017/api"
 
 const connectDB = async (): Promise<void> => {
     try {
-        //DB Connection
         const conn = await mongoose.connect(url);
         console.log(`MongoDB connected: ${conn.connection.host}`);
 
@@ -25,7 +27,10 @@ const connectDB = async (): Promise<void> => {
 
         //Creating Faker datas using Faker on seed file
         // await Booking.insertMany(bookingSeed);
-        
+        // await Contact.insertMany(contactSeed);
+        // await Room.insertMany(roomSeed);
+        // await User.insertMany(userSeed);
+
 
     } catch (error) {
         console.log('Error connection to MongoDB: ' + error);
