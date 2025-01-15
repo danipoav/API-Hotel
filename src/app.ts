@@ -29,10 +29,10 @@ app.use('/', (req: Request, res: Response) => {
     res.json({ message: `Bienvenido a al API de Danipoav's Hotel` })
 })
 
-// export const handler = serverless(app);
 const PORT = 3000;
 
-
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+    console.log(`http://localhost:${3000}`)
+})
+
+export const handler = serverless(app);

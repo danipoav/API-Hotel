@@ -7,6 +7,8 @@ provider:
   runtime: nodejs22.x
   region: eu-west-3
   stage: dev
+  environment:
+    SECRET_KEY: ${env:SECRET_KEY}
 
 functions:
   api:

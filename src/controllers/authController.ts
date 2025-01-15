@@ -26,9 +26,15 @@ export const login = async (req: Request, res: Response) => {
             return;
         }
 
-        const token = jwt.sign({ username: user.username }, secretKey, { expiresIn: '1h' });
-        res.json({ token });
-        return;
+        try {
+            const token = jwt.sign({ username: username }, secretKey, { expiresIn: '1h' });
+            res.json(token);
+        } catch (error) {
+            console.error("Error generando el token:", error);
+            res.status(500).json({ message: 'Error generating token', error });
+            return;
+        }
+
 
     } catch (error) {
         res.status(500).json({ message: 'Error loggin in: ', error });
