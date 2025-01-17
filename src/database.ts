@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import dotenv from 'dotenv'
 import bcrypt from 'bcrypt';
 import Auth from "./models/authModel";
 import { bookingSeed, contactSeed, roomSeed, userSeed } from "./seed/seed";
@@ -9,7 +10,12 @@ import Room from "./models/roomModel";
 import { authSchema } from "./models/authModel";
 import { getAllBookings } from "./controllers/bookingController";
 
-const url = "mongodb+srv://Danipoav:Batman2002@dashboardapi.betsv.mongodb.net/api"
+dotenv.config();
+
+const ATLAS_PASSWORD = process.env.ATLAS_PASSWORD as string;
+const ATLAS_USER = process.env.ATLAS_USER as string;
+
+const url = `mongodb+srv://${ATLAS_USER}:${ATLAS_PASSWORD}@dashboardapi.betsv.mongodb.net/api`
 
 const connectDB = async (): Promise<void> => {
     try {
