@@ -10,11 +10,10 @@ import { authSchema } from "./models/authModel";
 import { getAllBookings } from "./controllers/bookingController";
 
 const url = "mongodb+srv://Danipoav:Batman2002@dashboardapi.betsv.mongodb.net/api"
-const local = "mongodb://localhost:27017/api"
 
 const connectDB = async (): Promise<void> => {
     try {
-        const conn = await mongoose.connect(local);
+        const conn = await mongoose.connect(url);
         console.log(`MongoDB connected: ${conn.connection.host}`);
 
         // Creating new credentials using hash
