@@ -9,6 +9,8 @@ provider:
   stage: dev
   environment:
     SECRET_KEY: ${env:SECRET_KEY}
+    ATLAS_PASSWORD: ${env:ATLAS_PASSWORD}
+    ATLAS_USER: ${env:ATLAS_USER}
 
 functions:
   api:
