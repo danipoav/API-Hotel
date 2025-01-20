@@ -7,7 +7,7 @@ export const fetchAllRooms = async () => {
 }
 
 export const fetchRoomById = async (id: string) => {
-    return await Room.findById(id);
+    return await Room.findOne({id});
 }
 
 export const addRoom = async (data: RoomType) => {
@@ -17,9 +17,9 @@ export const addRoom = async (data: RoomType) => {
 }
 
 export const editRoom = async (id: string, data: RoomTypeID) => {
-    return await Room.findByIdAndUpdate(id, data, { new: true })
+    return await Room.findOneAndUpdate({id}, data, { new: true })
 }
 
 export const removeRoom = async (id: string) => {
-    return await Room.findByIdAndDelete(id);
+    return await Room.findOneAndDelete({id});
 }

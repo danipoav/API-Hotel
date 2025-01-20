@@ -7,7 +7,7 @@ export const fetchAllBookings = async () => {
 };
 
 export const fetchBookingById = async (id: string) => {
-    return await Booking.findById(id);
+    return await Booking.findOne({ id })
 };
 
 export const addBooking = async (data: BookingType) => {
@@ -17,9 +17,9 @@ export const addBooking = async (data: BookingType) => {
 };
 
 export const editBooking = async (id: string, data: BookingTypeID) => {
-    return await Booking.findByIdAndUpdate(id, data, { new: true });
+    return await Booking.findOneAndUpdate({ id }, data, { new: true });
 };
 
 export const removeBooking = async (id: string) => {
-    return await Booking.findByIdAndDelete(id);
+    return await Booking.findOneAndDelete({id});
 };

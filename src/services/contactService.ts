@@ -7,7 +7,7 @@ export const fetchAllContacts = async () => {
 }
 
 export const fetchContactById = async (id: string) => {
-    return await Contact.findById(id);
+    return await Contact.findOne({id});
 }
 
 export const addContact = async (data: ContactType) => {
@@ -17,9 +17,9 @@ export const addContact = async (data: ContactType) => {
 }
 
 export const editContact = async (id: string, data: ContactTypeID) => {
-    return await Contact.findByIdAndUpdate(id, data, { new: true });
+    return await Contact.findOneAndUpdate({id}, data, { new: true });
 }
 
 export const removeContact = async (id: string) => {
-    return await Contact.findByIdAndDelete(id);
+    return await Contact.findOneAndDelete({id});
 }

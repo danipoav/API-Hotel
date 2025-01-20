@@ -8,7 +8,7 @@ export const fetchAllUsers = async () => {
 }
 
 export const fetchUserById = async (id: string) => {
-    return await User.findById(id);
+    return await User.findOne({id});
 }
 
 export const addUser = async (data: UserType) => {
@@ -18,9 +18,9 @@ export const addUser = async (data: UserType) => {
 }
 
 export const editUser = async (id: string, data: UserTypeID) => {
-    return await User.findByIdAndUpdate(id, data, { new: true });
+    return await User.findOneAndUpdate({id}, data, { new: true });
 }
 
 export const removeUser = async (id: string) => {
-    return await User.findByIdAndDelete(id);
+    return await User.findOneAndDelete({id});
 }
