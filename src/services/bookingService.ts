@@ -21,5 +21,6 @@ export const editBooking = async (id: string, data: BookingTypeID) => {
 };
 
 export const removeBooking = async (id: string) => {
-    return await Booking.findOneAndDelete({id});
+    await Booking.findOneAndDelete({ id });
+    return await Booking.find();
 };
