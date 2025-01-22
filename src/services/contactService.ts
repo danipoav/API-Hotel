@@ -7,19 +7,24 @@ export const fetchAllContacts = async () => {
 }
 
 export const fetchContactById = async (id: string) => {
-    return await Contact.findOne({id});
+    return await Contact.findOne({ id });
 }
 
 export const addContact = async (data: ContactType) => {
     const contact = { ...data, id: uuidv4() };
     const newContact = new Contact(contact);
-    return await newContact.save();
+    await newContact.save();
+    return await Contact.find();
 }
 
 export const editContact = async (id: string, data: ContactTypeID) => {
-    return await Contact.findOneAndUpdate({id}, data, { new: true });
+    await Contact.findOneAndUpdate({ id }, data, { new: true });
+    return await Contact.find();
+
 }
 
 export const removeContact = async (id: string) => {
-    return await Contact.findOneAndDelete({id});
+    await Contact.findOneAndDelete({ id });
+    return await Contact.find();
+
 }

@@ -7,19 +7,22 @@ export const fetchAllRooms = async () => {
 }
 
 export const fetchRoomById = async (id: string) => {
-    return await Room.findOne({id});
+    return await Room.findOne({ id });
 }
 
 export const addRoom = async (data: RoomType) => {
     const room = { ...data, id: uuidv4() };
     const newRoom = new Room(room);
-    return await newRoom.save();
+    await newRoom.save();
+    return await Room.find();
 }
 
 export const editRoom = async (id: string, data: RoomTypeID) => {
-    return await Room.findOneAndUpdate({id}, data, { new: true })
+    await Room.findOneAndUpdate({ id }, data, { new: true })
+    return await Room.find();
 }
 
 export const removeRoom = async (id: string) => {
-    return await Room.findOneAndDelete({id});
+    await Room.findOneAndDelete({ id });
+    return await Room.find();
 }

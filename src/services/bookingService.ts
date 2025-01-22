@@ -13,11 +13,13 @@ export const fetchBookingById = async (id: string) => {
 export const addBooking = async (data: BookingType) => {
     const booking = { ...data, id: uuidv4() };
     const newBooking = new Booking(booking);
-    return await newBooking.save();
+    await newBooking.save();
+    return await Booking.find();
 };
 
 export const editBooking = async (id: string, data: BookingTypeID) => {
-    return await Booking.findOneAndUpdate({ id }, data, { new: true });
+    await Booking.findOneAndUpdate({ id }, data, { new: true });
+    return Booking.find();
 };
 
 export const removeBooking = async (id: string) => {
