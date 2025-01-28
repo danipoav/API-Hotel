@@ -7,7 +7,7 @@ import roomRouter from "./roomsRoutes";
 
 const router = Router();
 
-router.use(authenticateToken);
+// router.use(authenticateToken);
 
 router.use('/bookings', bookingRoutes);
 router.use('/contacts', contactRoutes);

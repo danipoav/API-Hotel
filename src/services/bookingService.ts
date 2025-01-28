@@ -1,9 +1,11 @@
 import { BookingType, BookingTypeID } from "../interfaces/BookingType";
 import Booking from "../models/bookingModel";
 import { v4 as uuidv4 } from 'uuid'
+import connection from "../database";
 
 export const fetchAllBookings = async () => {
-    return await Booking.find();
+    const [rows]: any =  await connection.query('SELECT * FROM bookings')
+    return rows;
 };
 
 export const fetchBookingById = async (id: string) => {

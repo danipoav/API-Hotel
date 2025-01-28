@@ -13,14 +13,16 @@ import { getAllBookings } from "./controllers/bookingController";
 
 dotenv.config();
 
-const connection = mysql.createConnection({
+export const connection = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    database: process.env.DB_NAME,
+    waitForConnections: true,
+    connectionLimit: 10,
 })
 
-const connectDB = (): void => {
+export const connectDB = (): void => {
     connection.connect((error) => {
         if (error) {
             console.log('Error getting connection to DB: ', error);
@@ -31,4 +33,4 @@ const connectDB = (): void => {
     })
 }
 
-export default connectDB;
+export default connection.promise();

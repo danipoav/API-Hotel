@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes'
 import protectedRoutes from './routes/protectedRoutes'
 import publicRouter from "./routes/publicRoutes";
-import connectDB from "./database";
+import { connectDB } from "./database";
 
 const serverless = require('serverless-http');
 const cors = require('cors');
