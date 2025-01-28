@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import dotenv from 'dotenv'
+import mysql from 'mysql2'
 import bcrypt from 'bcrypt';
 import Auth from "./models/authModel";
 import { bookingSeed, contactSeed, roomSeed, userSeed } from "./seed/seed";
@@ -12,38 +13,22 @@ import { getAllBookings } from "./controllers/bookingController";
 
 dotenv.config();
 
-const ATLAS_PASSWORD = process.env.ATLAS_PASSWORD as string;
-const ATLAS_USER = process.env.ATLAS_USER as string;
+const connection = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+})
 
-const url = `mongodb+srv://${ATLAS_USER}:${ATLAS_PASSWORD}@dashboardapi.betsv.mongodb.net/api`
-
-const connectDB = async (): Promise<void> => {
-    try {
-        const conn = await mongoose.connect(url);
-        console.log(`MongoDB connected: ${conn.connection.host}`);
-
-        // Creating new credentials using hash
-        // const saltRounds = 10;
-        // const hasehdPassword = await bcrypt.hash('admin', saltRounds);
-        // const newAuth = new Auth({
-        //     username: 'Daniel',
-        //     password: hasehdPassword
-        // })
-        // await newAuth.save()
-        // console.log('New User created');
-        // mongoose.connection.close();
-
-        //Creating Faker datas using Faker on seed file
-        // await Booking.insertMany(bookingSeed);
-        // await Contact.insertMany(contactSeed);
-        // await Room.insertMany(roomSeed);
-        // await User.insertMany(userSeed);
-
-
-    } catch (error) {
-        console.log('Error connection to MongoDB: ' + error);
-        process.exit(1);
-    }
+const connectDB = (): void => {
+    connection.connect((error) => {
+        if (error) {
+            console.log('Error getting connection to DB: ', error);
+            process.exit(1);
+        } else {
+            console.log('Connected correctly to MySQL')
+        }
+    })
 }
 
 export default connectDB;
