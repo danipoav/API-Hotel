@@ -22,6 +22,8 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
+app.use('/assets', express.static('public/assets'))
+
 app.use(express.json());
 
 //Rutas Publicas.
