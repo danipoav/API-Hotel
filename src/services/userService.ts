@@ -1,29 +1,37 @@
 import { UserType, UserTypeID } from "../interfaces/UserType";
-import User from "../models/userModel";
 import { v4 as uuidv4 } from "uuid";
-
+import connection from "../database";
 
 export const fetchAllUsers = async () => {
-    return await User.find();
+    const [rows]: any = await connection.query('SELECT * FROM users')
+    return rows;
 }
 
 export const fetchUserById = async (id: string) => {
-    return await User.findOne({ id });
+    const [rows]: any = await connection.query('SELECT * FROM users WHERE id = ?', [id]);
+    return rows.length ? rows[0] : null;
 }
 
 export const addUser = async (data: UserType) => {
-    const user = { ...data, id: uuidv4() };
-    const newUser = new User(user);
-    await newUser.save();
-    return await User.find();
+    const id = uuidv4();
+    const { name, photo, order_date, check_in, check_out, room_type, status } = data;
+    await connection.query(
+        'INSERT INTO users (id, name, photo, order_date, check_in, check_out, room_type, status) VALUES (?, ?, ?, ?, ?,?,?,?)',
+        [id, name, photo, order_date, check_in, check_out, room_type, status]
+    );
+    return fetchAllUsers();
 }
 
 export const editUser = async (id: string, data: UserTypeID) => {
-    await User.findOneAndUpdate({ id }, data, { new: true });
-    return await User.find();
+    const { name, photo, order_date, check_in, check_out, room_type, status } = data;
+    await connection.query(
+        'UPDATE users SET name = ?, photo = ?,order_date=?, check_in = ?, check_out = ?,room_type=?, status = ?, WHERE id = ?',
+        [name, photo, order_date, check_in, check_out, room_type, status, id]
+    );
+    return fetchAllUsers();
 }
 
 export const removeUser = async (id: string) => {
-    await User.findOneAndDelete({ id });
-    return await User.find();
+    await connection.query('DELETE FROM users WHERE id = ?', [id]);
+    return fetchAllUsers();
 }

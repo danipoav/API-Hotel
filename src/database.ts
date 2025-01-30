@@ -1,15 +1,6 @@
-import mongoose from "mongoose";
 import dotenv from 'dotenv'
 import mysql from 'mysql2'
-import bcrypt from 'bcrypt';
-import Auth from "./models/authModel";
-import { bookingSeed, contactSeed, roomSeed, userSeed } from "./seed/seed";
-import Booking from "./models/bookingModel";
-import Contact from "./models/contactModel";
-import User from "./models/userModel";
-import Room from "./models/roomModel";
-import { authSchema } from "./models/authModel";
-import { getAllBookings } from "./controllers/bookingController";
+
 
 dotenv.config();
 

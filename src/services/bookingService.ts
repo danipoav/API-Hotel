@@ -1,5 +1,4 @@
 import { BookingType, BookingTypeID } from "../interfaces/BookingType";
-import Booking from "../models/bookingModel";
 import { v4 as uuidv4 } from 'uuid'
 import connection from "../database";
 

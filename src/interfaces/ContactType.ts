@@ -1,6 +1,6 @@
 export interface ContactType {
     name: string;
-    join_date: string;
+    join_date: Date;
     job_desc: string;
     phone: string;
     status: string
