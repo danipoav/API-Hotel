@@ -42,7 +42,7 @@ app.use('/', (req: Request, res: Response) => {
 
 export const handler = serverless(app);
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`)
-})
+// const PORT = 3000;
+// app.listen(PORT, () => {
+//     console.log(`http://localhost:${PORT}`)
+// })
