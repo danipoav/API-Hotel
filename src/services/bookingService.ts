@@ -16,7 +16,7 @@ export const addBooking = async (data: BookingType) => {
     const id = uuidv4();
     const { name, photo, check_in, check_out, room, requests, booking_date, price, status } = data;
     await connection.query(
-        'INSERT INTO bookings (id,name, photo, check_in, check_out,room,requests,booking_date,price,status) VALUES (?, ?, ?, ?, ?)',
+        'INSERT INTO bookings (id,name, photo, check_in, check_out,room,requests,booking_date,price,status) VALUES (?, ?, ?, ?, ?,?,?,?,?,?)',
         [id, name, photo, check_in, check_out, room, requests, booking_date, price, status]
     );
     return fetchAllBookings();
@@ -25,7 +25,7 @@ export const addBooking = async (data: BookingType) => {
 export const editBooking = async (id: string, data: BookingTypeID) => {
     const { name, photo, check_in, check_out, room, requests, booking_date, price, status } = data;
     await connection.query(
-        'UPDATE bookings SET name = ?, photo = ?, check_in = ?, check_out = ?,room = ?,requests = ?,booking_date = ?, price = ?,status = ?, WHERE id = ?',
+        'UPDATE bookings SET name = ?, photo = ?, check_in = ?, check_out = ?,room = ?,requests = ?,booking_date = ?, price = ?,status = ? WHERE id = ?',
         [name, photo, check_in, check_out, room, requests, booking_date, price, status, id]
     );
     return fetchAllBookings();

@@ -3,9 +3,9 @@ export interface ContactType {
     join_date: Date;
     job_desc: string;
     phone: string;
-    status: string
     days: "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday",
     photo: string;
+    status: string
 }//status active inactive
 
 export interface ContactTypeID extends ContactType{

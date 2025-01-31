@@ -1,30 +1,38 @@
 import { ContactType, ContactTypeID } from "../interfaces/ContactType";
 import Contact from "../models/contactModel";
 import { v4 as uuidv4 } from "uuid";
+import connection from '../database'
 
 export const fetchAllContacts = async () => {
-    return await Contact.find();
+    const [rows]: any = await connection.query('SELECT * FROM contacts')
+    return rows;
 }
 
 export const fetchContactById = async (id: string) => {
-    return await Contact.findOne({ id });
+    const [rows]: any = await connection.query('SELECT * FROM contacts WHERE id = ?', [id]);
+    return rows.length ? rows[0] : null;
 }
 
 export const addContact = async (data: ContactType) => {
-    const contact = { ...data, id: uuidv4() };
-    const newContact = new Contact(contact);
-    await newContact.save();
-    return await Contact.find();
+    const id = uuidv4();
+    const { name, join_date, job_desc, phone, days, photo, status } = data;
+    await connection.query(
+        'INSERT INTO contacts (id, name, join_date, job_desc, phone, days, photo, status) VALUES (?, ?, ?, ?, ?,?,?,?)',
+        [id, name, join_date, job_desc, phone, days, photo, status]
+    );
+    return fetchAllContacts();
 }
 
 export const editContact = async (id: string, data: ContactTypeID) => {
-    await Contact.findOneAndUpdate({ id }, data, { new: true });
-    return await Contact.find();
-
+    const { name, join_date, job_desc, phone, days, photo, status } = data;
+    await connection.query(
+        'UPDATE contacts SET name = ?, join_date = ?,job_desc=?, phone = ?, days = ?,photo=?, status = ? WHERE id = ?',
+        [name, join_date, job_desc, phone, days, photo, status, id]
+    );
+    return fetchAllContacts();
 }
 
 export const removeContact = async (id: string) => {
-    await Contact.findOneAndDelete({ id });
-    return await Contact.find();
-
+    await connection.query('DELETE FROM contacts WHERE id = ?', [id]);
+    return fetchAllContacts();
 }

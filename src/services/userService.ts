@@ -25,10 +25,10 @@ export const addUser = async (data: UserType) => {
 export const editUser = async (id: string, data: UserTypeID) => {
     const { name, photo, order_date, check_in, check_out, room_type, status } = data;
     await connection.query(
-        'UPDATE users SET name = ?, photo = ?,order_date=?, check_in = ?, check_out = ?,room_type=?, status = ?, WHERE id = ?',
+        'UPDATE users SET name = ?, photo = ?,order_date=?, check_in = ?, check_out = ?,room_type=?, status = ? WHERE id = ?',
         [name, photo, order_date, check_in, check_out, room_type, status, id]
     );
-    return fetchAllUsers();
+    return fetchAllUsers(); 
 }
 
 export const removeUser = async (id: string) => {
