@@ -15,8 +15,14 @@ connectDB();
 const app = express();
 
 //Restricciones de CORS para que solo permita solicitudes de mi dominio
+// app.use(cors({
+//     origin: 'http://localhost:5173',
+//     credentials: true,
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+// }));
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'http://hotel-db.s3-website.eu-west-3.amazonaws.com/',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
