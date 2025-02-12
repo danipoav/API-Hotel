@@ -22,7 +22,7 @@ const app = express();
 //     allowedHeaders: ['Content-Type', 'Authorization'],
 // }));
 app.use(cors({
-    origin: 'http://hotel-db.s3-website.eu-west-3.amazonaws.com/',
+    origin: 'http://hotel-db.s3-website.eu-west-3.amazonaws.com',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
