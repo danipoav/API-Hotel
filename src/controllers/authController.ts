@@ -13,7 +13,6 @@ export const login = async (req: Request, res: Response) => {
     const { username, password } = req.body;
 
     try {
-        console.log(username, password)
         const user = await Auth.findOne({ username: username })
 
         if (!user) {
