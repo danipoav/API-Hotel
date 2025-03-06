@@ -1,0 +1,30 @@
+name: Deploy Serverless App
+
+on:
+  push:
+    branches:
+      - aws  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Configurar AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Instalar Serverless Framework
+        run: npm install -g serverless
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Desplegar con Serverless
+        run: serverless deploy
