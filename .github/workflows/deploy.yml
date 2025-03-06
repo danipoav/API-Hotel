@@ -20,11 +20,17 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Instalar Serverless Framework v3
-        run: npm install -g serverless@3
+      - name: Instalar Serverless Framework
+        run: npm install -g serverless
 
       - name: Instalar dependencias
         run: npm install
 
-      - name: Desplegar con Serverless v3
+      - name: Cargar variables de entorno
+        run: |
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
+          echo "ATLAS_PASSWORD=${{ secrets.ATLAS_PASSWORD }}" >> $GITHUB_ENV
+          echo "ATLAS_USER=${{ secrets.ATLAS_USER }}" >> $GITHUB_ENV
+
+      - name: Desplegar con Serverless
         run: serverless deploy
