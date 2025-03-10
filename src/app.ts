@@ -14,6 +14,8 @@ connectDB();
 
 const app = express();
 
+//ts-node src/app.ts
+
 //Restricciones de CORS para que solo permita solicitudes de mi dominio
 // app.use(cors({
 //     origin: 'http://localhost:5173',
