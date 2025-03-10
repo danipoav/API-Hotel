@@ -23,6 +23,6 @@ export const editRoom = async (id: string, data: RoomTypeID) => {
 }
 
 export const removeRoom = async (id: string) => {
-    await Room.findOneAndDelete({ id });
+    
     return await Room.find();
 }
